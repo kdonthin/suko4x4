@@ -716,6 +716,7 @@ function resetBoard()
 
     initializeTiles() ;
     steps.clear() ;
+    $("#board > div").removeClass("revealedNumber") ;
     updateBoard() ;
     updateTiles() ;
 
@@ -755,7 +756,7 @@ function newPuzzle(ask)
  
     TILES.unbind("click") ;
     $("#board > div").unbind("click") ;
-    $("#board > div").removeClass(`colorPattern${colorPatternNo}-1`).removeClass(`colorPattern${colorPatternNo}-2`).removeClass(`colorPattern${colorPatternNo}-3`) ;
+    $("#board > div").removeClass(`colorPattern${colorPatternNo}-1`).removeClass(`colorPattern${colorPatternNo}-2`).removeClass(`colorPattern${colorPatternNo}-3`).removeClass("revealedNumber") ;
 
     setBoard() ;
 }
@@ -808,4 +809,94 @@ function undoStep()
 
     updateBoard() ;
     updateTiles() ;
+}
+
+function revealOneBox()
+{
+    // console.log("revealOneBox") ;
+    let remainingBoxes = [] ;
+
+    for (let row = 0; row < dimensions; ++row)
+    {
+        for (let col = 0; col < dimensions; ++col)
+        {
+            if ( userAnswers[row][col] == blank )
+            {
+                remainingBoxes.push(row*dimensions+col) ;
+            }
+        }
+    }
+
+    if ( remainingBoxes.length == 0)
+    {
+        alert("No box left to reveal.") ;
+        logToPage("No box left to reveal.") ;
+
+        return ;
+    }
+
+    let d = new Deck(remainingBoxes.length) ;
+    d.shuffle() ;
+    let revealLocation = remainingBoxes[d.pop()] ;
+    let revealRow = Math.floor(revealLocation/dimensions) ;
+    let revealCol = Math.floor(revealLocation%dimensions) ;
+    let revealNumber = solution[revealRow][revealCol] ;
+
+    console.log(`Reveal: (${revealRow},${revealCol}) - ${revealNumber}`) ;
+
+    let tile = tiles[revealNumber] ;
+
+    // if revealRow/revealCol is not blank, then move tile back.
+    if ( userAnswers[revealRow][revealCol] != blank)
+    {
+        clearTileSelection() ;
+        boardClicked(revealRow, revealCol) ;
+    }
+
+    // if tile is not available, move number back to tiles.
+    if ( !tiles[revealNumber].enabled )
+    {
+        moveNumberBack(revealNumber) ;
+    }
+    else
+    {
+        tiles[revealNumber].selected = true ;
+    }
+
+    boardClicked(revealRow, revealCol) ;
+    logToPage(`Revealed(${revealRow},${revealCol}) - ${revealNumber}`) ;
+    board[revealRow][revealCol].addClass("revealedNumber") ;
+}
+
+function moveNumberBack(number)
+{
+    console.log(`moveNumberBack : ${number}`) ;
+
+    clearTileSelection() ;
+    let numRow = -1 ;
+    let numCol = -1 ;
+
+    for (let row = 0; row < dimensions; ++row)
+    {
+        for (let col = 0; col < dimensions; ++col)
+        {
+            if ( userAnswers[row][col] == number )
+            {
+                numRow = row ;
+                numCol = col ;
+
+                break ;
+            }
+        }
+    }
+
+    if ( numRow >= 0 && numCol >= 0 )
+    {
+        console.log(`moveNumberBack(${number}) - (${numRow},${numCol})`) ;
+        boardClicked(numRow, numCol) ;
+    }
+    else
+    {
+        console.log(`number not found on the board...`) ;
+    }
 }
