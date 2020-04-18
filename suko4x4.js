@@ -884,8 +884,6 @@ function revealOneBox()
 
 function moveNumberBack(number)
 {
-    // console.log(`moveNumberBack : ${number}`) ;
-
     clearTileSelection() ;
     let numRow = -1 ;
     let numCol = -1 ;
@@ -906,22 +904,21 @@ function moveNumberBack(number)
 
     if ( numRow >= 0 && numCol >= 0 )
     {
-        console.log(`moveNumberBack(${number}) - (${numRow},${numCol})`) ;
         boardClicked(numRow, numCol) ;
     }
     else
     {
-        console.log(`number not found on the board...`) ;
+        console.log(`Oops... ${number} not found on the board...`) ;
+        alert(`Oops... ${number} not found on the board...`) ;
     }
 }
 
 function moveNumberToBoard(number)
 {
-    // console.log(`moveNumberToBoard : ${number}`) ;
-
     if ( !tiles[number].enabled )
     {
         alert(`${number} tile is already used.`) ;
+        console.log(`${number} tile is already used.`) ;
 
         return ;
     }
@@ -947,11 +944,11 @@ function moveNumberToBoard(number)
     if ( numRow >= 0 && numCol >= 0 )
     {
         tiles[number].selected = true ;
-        // console.log(`moveNumberToBoard(${number}) - (${numRow},${numCol})`) ;
         boardClicked(numRow, numCol) ;
     }
     else
     {
-        console.log(`number not found in tiles...`) ;
+        alert(`Oops... ${number} not found in tiles...`) ;
+        console.log(`Oops... ${number} not found in tiles...`) ;
     }
 }
