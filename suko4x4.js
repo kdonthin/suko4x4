@@ -148,7 +148,7 @@ var isPuzzleCorrect ;
 var colorPatternNo = 2 ;
 var revealedNumbers = [] ;
 
-const GAME_INTRO = "\nINSTRUCTIONS:\nPlace the numbers 0-15 in the spaces so that the number in each circle is equal to the sum of the four surrounding spaces and each color total is correct.\nClick on a tile to select and click on a box(Board) to place it." ;
+const GAME_INTRO = "\nINSTRUCTIONS:\nPlace the numbers 0-15 in the spaces so that the number in each circle is equal to the sum of the four surrounding spaces and each color total is correct.\nClick on a tile to select and click on a box(Board) to place it. You can use 'Reveal One Box' button to reveal number in a random box." ;
 
 function createSolution()
 {
