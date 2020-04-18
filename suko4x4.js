@@ -151,7 +151,7 @@ const GAME_INTRO = "\nINSTRUCTIONS:\nPlace the numbers 0-F in the spaces so that
 
 function createSolution()
 {
-    let deck = new Deck(16) ;
+    let deck = new Deck(dimensions * dimensions) ;
 
     deck.shuffle() ;
 
@@ -335,7 +335,7 @@ function initializeTiles()
 {
     tiles = [] ;
     
-    for( let i = 0; i < 16 ; ++i)
+    for( let i = 0; i < dimensions * dimensions ; ++i)
     {
         tiles.push(new Tile(i, false, true)) ;
     }
@@ -343,7 +343,7 @@ function initializeTiles()
 
 function clearTileSelection()
 {
-    for( let i = 0; i < 16 ; ++i)
+    for( let i = 0; i < dimensions * dimensions ; ++i)
     {
         tiles[i].selected = false ;
     }
@@ -434,7 +434,7 @@ function setBoardColor(position, color)
 
 function getSelectedTileIndex()
 {
-    for( let i = 0; i < 16 ; ++i)
+    for( let i = 0; i < dimensions * dimensions ; ++i)
     {
         if ( tiles[i].selected )
         {
@@ -796,7 +796,7 @@ function undoStep()
     if ( step.action == ADD)
     {
         clearTileSelection() ;
-        userAnswers[step.row][step.column] = 0 ;
+        userAnswers[step.row][step.column] = blank ;
         tiles[step.digit].enabled = true ;
         tiles[step.digit].selected = true ;
     }
