@@ -762,7 +762,7 @@ function newPuzzle(ask)
  
     TILES.unbind("click") ;
     $("#board > div").unbind("click") ;
-    $("#board > div").removeClass(`colorPattern${colorPatternNo}-1`).removeClass(`colorPattern${colorPatternNo}-2`).removeClass(`colorPattern${colorPatternNo}-3`).removeClass("revealedNumber") ;
+    $("#board > div").removeClass(`colorPattern${colorPatternNo}-1`).removeClass(`colorPattern${colorPatternNo}-2`).removeClass(`colorPattern${colorPatternNo}-3`).removeClass(`colorPattern${colorPatternNo}-4`).removeClass("revealedNumber") ;
 
     setBoard() ;
 }
@@ -854,8 +854,6 @@ function revealOneBox()
     let revealRow = Math.floor(revealLocation/dimensions) ;
     let revealCol = Math.floor(revealLocation%dimensions) ;
     let revealNumber = solution[revealRow][revealCol] ;
-
-    // console.log(`Reveal: (${revealRow},${revealCol}) - ${revealNumber}`) ;
 
     let tile = tiles[revealNumber] ;
 
