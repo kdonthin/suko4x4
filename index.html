@@ -1,0 +1,126 @@
+<html >
+    <head>
+        <title>Suko Puzzle 4x4</title>
+        <link rel="stylesheet" href="suko4x4.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script lang="javascript" src="suko4x4.js"></script>
+        <script lang="javascript">
+            $(document).ready( function() {
+                $("#undo").click(function() { 
+                    undoStep() ;
+                }) ;
+
+                $("#answer").click(function() { 
+                    toggleAnswer() ;
+                }) ;
+
+                $("#checkAnswer").click(function() {
+                    checkAnswer(false) ; // not auto check
+                })
+
+                $("#reset").click(function() {
+                    resetBoard() ;
+                })
+
+                $("#newPuzzle").click(function() {
+                    newPuzzle(true) ;
+                })
+
+                newPuzzle(false) ;
+            } ) ;
+        </script>
+    </head>
+    <body>
+        <table>
+            <thead class="heading">
+                <th class="boardTitle">Board</th>
+                <th class="tilesTitle">Tiles</th>
+                <th class="steps">Steps</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width: 350px;">
+                        <div id="board" class="wrapper">
+                            <div id="A1" class="box"></div>
+                            <div id="A2" class="box"></div>
+                            <div id="A3" class="box"></div>
+                            <div id="A4" class="box"></div>
+                            <div id="B1" class="box"></div>
+                            <div id="B2" class="box"></div>
+                            <div id="B3" class="box"></div>
+                            <div id="B4" class="box"></div>
+                            <div id="C1" class="box"></div>
+                            <div id="C2" class="box"></div>
+                            <div id="C3" class="box"></div>
+                            <div id="C4" class="box"></div>
+                            <div id="D1" class="box"></div>
+                            <div id="D2" class="box"></div>
+                            <div id="D3" class="box"></div>
+                            <div id="D4" class="box"></div>
+                            <div id="E1" class="circle"></div>
+                            <div id="E2" class="circle"></div>
+                            <div id="E3" class="circle"></div>
+                            <div id="E4" class="circle"></div>
+                        </div>            
+                    </td>
+                    <td style="padding: 100px;">
+                        <div id="tiles" class="tilesWrapper">
+                            <div id="TA1" class="tile"></div>
+                            <div id="TA2" class="tile"></div>
+                            <div id="TA3" class="tile"></div>
+                            <div id="TA4" class="tile"></div>
+                            <div id="TB1" class="tile"></div>
+                            <div id="TB2" class="tile"></div>
+                            <div id="TB3" class="tile"></div>
+                            <div id="TB4" class="tile"></div>
+                            <div id="TC1" class="tile"></div>
+                            <div id="TC2" class="tile"></div>
+                            <div id="TC3" class="tile"></div>
+                            <div id="TC4" class="tile"></div>
+                            <div id="TD1" class="tile"></div>
+                            <div id="TD2" class="tile"></div>
+                            <div id="TD3" class="tile"></div>
+                            <div id="TD4" class="tile"></div>
+                        </div>            
+                    </td>
+                    <td rowspan="2">
+                        <div id="stepsDiv" class="steps">
+                            <textarea id="steps" readonly="true" cols="15" rows="32"></textarea>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:20px 50px">
+                        <div id="sum" class="sumWrapper">
+                            <div id="SA1" class="circle sa1">1</div>
+                            <div id="SA2" class="circle sa2">1</div>
+                            <div id="SA3" class="circle sa3">1</div>
+                            <div id="SB1" class="circle sb1">1</div>
+                            <div id="SB2" class="circle sb2">1</div>
+                            <div id="SB3" class="circle sb3">1</div>
+                            <div id="SC1" class="circle sc1">1</div>
+                            <div id="SC2" class="circle sc2">1</div>
+                            <div id="SC3" class="circle sc3">1</div>
+                        </div>            
+                    </td>
+                    <td style="padding: 0px 100px">
+                        <div id="submit" class="submit">
+                        <input type="button" id="timer" value="00:00" class="button timer" />
+                        <br /><br />
+                        <input type="button" id="answer" value="Show Answer" class="button check" />
+                        <br /><br />
+                        <input type="button" id="undo" value="UNDO" class="button undo" />
+                        <br /><br />
+                        <input type="button" id="checkAnswer" value="Check Answer" class="button check" />
+                        <br /><br />
+                        <input type="button" id="reset" value="Reset Board" class="button reset" />
+                        <br /><br />
+                        <input type="button" id="newPuzzle" value="New Puzzle" class="button new" />
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <textarea id="log" readonly="true" cols="60" rows="20"></textarea>
+    </body>
+</html>
