@@ -718,14 +718,10 @@ function resetBoard()
     initializeTiles() ;
     steps.clear() ;
 
-    let revealedNumbersTemp = revealedNumbers ;
-
-    revealedNumbers = [] ;
-
     updateBoard() ;
     updateTiles() ;
 
-    revealedNumbersTemp.forEach(number => {
+    revealedNumbers.forEach(number => {
         moveNumberToBoard(number) ;
     }) ;
 
@@ -921,7 +917,7 @@ function moveNumberBack(number)
 
 function moveNumberToBoard(number)
 {
-    console.log(`moveNumberToBoard : ${number}`) ;
+    // console.log(`moveNumberToBoard : ${number}`) ;
 
     if ( !tiles[number].enabled )
     {
