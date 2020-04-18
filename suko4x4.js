@@ -818,7 +818,6 @@ function undoStep()
 
 function revealOneBox()
 {
-    // console.log("revealOneBox") ;
     let remainingBoxes = [] ;
 
     if ( revealedNumbers.length > 3)
@@ -855,7 +854,7 @@ function revealOneBox()
     let revealCol = Math.floor(revealLocation%dimensions) ;
     let revealNumber = solution[revealRow][revealCol] ;
 
-    console.log(`Reveal: (${revealRow},${revealCol}) - ${revealNumber}`) ;
+    // console.log(`Reveal: (${revealRow},${revealCol}) - ${revealNumber}`) ;
 
     let tile = tiles[revealNumber] ;
 
