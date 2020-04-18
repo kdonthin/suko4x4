@@ -146,8 +146,9 @@ var timerStartTime ;
 var timePastSec ;
 var isPuzzleCorrect ;
 var colorPatternNo = 2 ;
+var revealedNumbers = [] ;
 
-const GAME_INTRO = "\nINSTRUCTIONS:\nPlace the numbers 0-F in the spaces so that the number in each circle is equal to the sum of the four surrounding spaces and each color total is correct.\nClick on tile to select and click on box(Board) to place it.\nInspired by WSJ Suko Number Puzzle." ;
+const GAME_INTRO = "\nINSTRUCTIONS:\nPlace the numbers 0-15 in the spaces so that the number in each circle is equal to the sum of the four surrounding spaces and each color total is correct.\nClick on a tile to select and click on a box(Board) to place it." ;
 
 function createSolution()
 {
@@ -716,9 +717,17 @@ function resetBoard()
 
     initializeTiles() ;
     steps.clear() ;
-    $("#board > div").removeClass("revealedNumber") ;
+
+    let revealedNumbersTemp = revealedNumbers ;
+
+    revealedNumbers = [] ;
+
     updateBoard() ;
     updateTiles() ;
+
+    revealedNumbersTemp.forEach(number => {
+        moveNumberToBoard(number) ;
+    }) ;
 
     logToPage("Resetting Board...") ;
 }
@@ -816,6 +825,14 @@ function revealOneBox()
     // console.log("revealOneBox") ;
     let remainingBoxes = [] ;
 
+    if ( revealedNumbers.length > 3)
+    {
+        if (!confirm(`Already revealed ${revealedNumbers.length} numbers. Are you sure you want to reveal one more?`))
+        {
+            return ;
+        }
+    }
+
     for (let row = 0; row < dimensions; ++row)
     {
         for (let col = 0; col < dimensions; ++col)
@@ -866,11 +883,12 @@ function revealOneBox()
     boardClicked(revealRow, revealCol) ;
     logToPage(`Revealed(${revealRow},${revealCol}) - ${revealNumber}`) ;
     board[revealRow][revealCol].addClass("revealedNumber") ;
+    revealedNumbers.push(revealNumber) ;
 }
 
 function moveNumberBack(number)
 {
-    console.log(`moveNumberBack : ${number}`) ;
+    // console.log(`moveNumberBack : ${number}`) ;
 
     clearTileSelection() ;
     let numRow = -1 ;
@@ -898,5 +916,46 @@ function moveNumberBack(number)
     else
     {
         console.log(`number not found on the board...`) ;
+    }
+}
+
+function moveNumberToBoard(number)
+{
+    console.log(`moveNumberToBoard : ${number}`) ;
+
+    if ( !tiles[number].enabled )
+    {
+        alert(`${number} tile is already used.`) ;
+
+        return ;
+    }
+
+    clearTileSelection() ;
+    let numRow = -1 ;
+    let numCol = -1 ;
+
+    for (let row = 0; row < dimensions; ++row)
+    {
+        for (let col = 0; col < dimensions; ++col)
+        {
+            if ( solution[row][col] == number )
+            {
+                numRow = row ;
+                numCol = col ;
+
+                break ;
+            }
+        }
+    }
+
+    if ( numRow >= 0 && numCol >= 0 )
+    {
+        tiles[number].selected = true ;
+        // console.log(`moveNumberToBoard(${number}) - (${numRow},${numCol})`) ;
+        boardClicked(numRow, numCol) ;
+    }
+    else
+    {
+        console.log(`number not found in tiles...`) ;
     }
 }
