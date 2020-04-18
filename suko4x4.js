@@ -758,6 +758,7 @@ function newPuzzle(ask)
 
     board = [[],[],[],[],[]] ;
     sumBoard = [[],[],[]] ;
+    revealedNumbers = [] ;
  
     TILES.unbind("click") ;
     $("#board > div").unbind("click") ;
