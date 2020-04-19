@@ -33,7 +33,6 @@ body {
   text-align: center;
 }
 
-
 .colorPattern0-1 {
   background-color: #ccc;
   color: #000;
@@ -134,6 +133,66 @@ body {
   color: #fff;
 }
 
+.colorPattern5-1 {
+  background-color: #41ead4;
+  color: #000;
+}
+  
+.colorPattern5-2 {
+  background-color: #ff0022;
+  color: #000;
+}
+  
+.colorPattern5-3 {
+  background-color: #011627;
+  color: #fff;
+}
+
+.colorPattern5-4 {
+  background-color: #b91372;
+  color: #000;
+}
+
+.colorPattern6-1 {
+  background-color: #ff6199;
+  color: #000;
+}
+  
+.colorPattern6-2 {
+  background-color: #f5f3d8;
+  color: #000;
+}
+
+.colorPattern6-3 {
+  background-color: #6eb869;
+  color: #000;
+}
+  
+.colorPattern6-4 {
+  background-color: #c59fe3;
+  color: #000;
+}
+
+.colorPattern7-1 {
+  background-color: #008CBA;
+  color: #fff;
+}
+  
+.colorPattern7-2 {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.colorPattern7-3 {
+  background-color: purple;
+  color: #fff;
+}
+  
+.colorPattern7-4 {
+  background-color: #f44336;
+  color: #fff;
+}
+
 .wrapper {
   width: 300px;
   display: grid;
@@ -153,109 +212,109 @@ body {
 .sa1 {
   position: absolute;
   z-index: 3;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin-top: -430px;
-  margin-left: 0px;
+  margin-left: 25px;
   border: 3px solid blue;
   display: inline-block;
-  font-size: 180%;
+  font-size: 150%;
 }
 
 .sa2 {
   position: absolute;
   z-index: 3;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin-top: -430px;
-  margin-left: 100px;
+  margin-left: 115px;
   border: 3px solid blue;
   display: inline-block;
-  font-size: 180%;
+  font-size: 150%;
 }
 
 .sa3 {
   position: absolute;
   z-index: 3;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin-top: -430px;
-  margin-left: 200px;
+  margin-left: 215px;
   border: 3px solid blue;
   display: inline-block;
-  font-size: 180%;
+  font-size: 150%;
 }
 
 .sb1 {
   position: absolute;
   z-index: 3;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin-top: -335px;
-  margin-left: 0px;
+  margin-left: 25px;
   border: 3px solid blue;
   display: inline-block;
-  font-size: 180%;
+  font-size: 150%;
 }
 
 .sb2 {
   position: absolute;
   z-index: 3;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin-top: -335px;
-  margin-left: 100px;
+  margin-left: 115px;
   border: 3px solid blue;
   display: inline-block;
-  font-size: 180%;
+  font-size: 150%;
 }
 
 .sb3 {
   position: absolute;
   z-index: 3;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin-top: -335px;
-  margin-left: 200px;
+  margin-left: 215px;
   border: 3px solid blue;
   display: inline-block;
-  font-size: 180%;
+  font-size: 150%;
 }
 
 .sc1 {
   position: absolute;
   z-index: 3;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin-top: -240px;
-  margin-left: 0px;
+  margin-left: 25px;
   border: 3px solid blue;
   display: inline-block;
-  font-size: 180%;
+  font-size: 150%;
 }
 
 .sc2 {
   position: absolute;
   z-index: 3;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin-top: -240px;
-  margin-left: 100px;
+  margin-left: 115px;
   border: 3px solid blue;
   display: inline-block;
-  font-size: 180%;
+  font-size: 150%;
 }
 
 .sc3 {
   position: absolute;
   z-index: 3;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin-top: -240px;
-  margin-left: 200px;
+  margin-left: 215px;
   border: 3px solid blue;
   display: inline-block;
-  font-size: 180%;
+  font-size: 150%;
 }
 
 .tilesWrapper {

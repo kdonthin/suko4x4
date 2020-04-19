@@ -210,9 +210,11 @@ function setBoard()
 
     // boardColors = rotateBoardColors(boardColors) ;
 
-    var colorPatternDeck = new Deck(5) ;
+    var colorPatternDeck = new Deck(8) ;
     colorPatternDeck.shuffle() ;
     colorPatternNo = colorPatternDeck.pop() ;
+
+    // colorPatternNo = 7 ;
 
     for (let row = 0; row < dimensions; ++row)
     {
