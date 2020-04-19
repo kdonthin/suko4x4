@@ -208,13 +208,11 @@ function setBoard()
     colorDeck.reset() ;
     setBoardColor(positionDeck.pop(), colorDeck.pop()+1) ;
 
-    // boardColors = rotateBoardColors(boardColors) ;
+    boardColors = rotateBoardColors(boardColors) ;
 
     var colorPatternDeck = new Deck(8) ;
     colorPatternDeck.shuffle() ;
     colorPatternNo = colorPatternDeck.pop() ;
-
-    // colorPatternNo = 7 ;
 
     for (let row = 0; row < dimensions; ++row)
     {
@@ -292,13 +290,13 @@ function rotateBoardColors(boardColors)
 
 function rotateBoardColorsOnce(boardColors)
 {
-    let newBoardColors = [[0,0,0,0], [0,0,0,0], [0,0,0,0]] ;
+    let newBoardColors = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]] ;
 
     for (let row = 0; row < dimensions; ++row)
     {
         for (let col = 0; col < dimensions; ++col)
         {
-            newBoardColors[col][2-row] = boardColors[row][col] ;
+            newBoardColors[col][3-row] = boardColors[row][col] ;
         }
     }
 
