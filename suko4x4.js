@@ -123,7 +123,7 @@ class Steps
 }
 
 const dimensions = 4 ;
-const blank = -1 ;
+const blank = 0 ;
 var tiles ;
 
 var solution = [[],[],[],[]] ;
@@ -148,7 +148,7 @@ var isPuzzleCorrect ;
 var colorPatternNo = 2 ;
 var revealedNumbers = [] ;
 
-const GAME_INTRO = "\nINSTRUCTIONS:\nPlace the numbers 0-15 in the spaces so that the number in each circle is equal to the sum of the four surrounding spaces and each color total is correct.\nClick on a tile to select and click on a box(Board) to place it. You can use 'Reveal One Box' button to reveal number in a random box." ;
+const GAME_INTRO = "\nINSTRUCTIONS:\nPlace the numbers 1-16 in the spaces so that the number in each circle is equal to the sum of the four surrounding spaces and each color total is correct.\nClick on a tile to select and click on a box(Board) to place it. You can use 'Reveal One Box' button to reveal number in a random box." ;
 
 function createSolution()
 {
@@ -160,7 +160,7 @@ function createSolution()
     {
         for (let col = 0; col < dimensions; ++col)
         {
-            solution[row][col] = deck.pop() ;
+            solution[row][col] = deck.pop()+1 ; // 0 based deck
         }
     }
 }
@@ -338,7 +338,7 @@ function initializeTiles()
     
     for( let i = 0; i < dimensions * dimensions ; ++i)
     {
-        tiles.push(new Tile(i, false, true)) ;
+        tiles.push(new Tile(i+1, false, true)) ; // Tiles start with 1.
     }
 }
 
@@ -382,8 +382,8 @@ function boardClicked(row, col)
         if (userAnswers[row][col] != blank)
         {
             steps.push(new Step(REMOVE, userAnswers[row][col], row, col )) ;
-            tiles[userAnswers[row][col]].enabled = true ;
-            tiles[userAnswers[row][col]].selected = true ;
+            tiles[userAnswers[row][col]-1].enabled = true ;
+            tiles[userAnswers[row][col]-1].selected = true ;
             userAnswers[row][col] = blank ;
             updateBoard() ;
             updateTiles() ;
@@ -396,10 +396,10 @@ function boardClicked(row, col)
     }
     else
     {
-        if ( userAnswers[row][col] >= 0)
+        if ( userAnswers[row][col] > blank)
         {
-            tiles[userAnswers[row][col]].enabled = true ;
-            tiles[userAnswers[row][col]].selected = true ;
+            tiles[userAnswers[row][col]-1].enabled = true ;
+            tiles[userAnswers[row][col]-1].selected = true ;
             steps.push(new Step(REMOVE, userAnswers[row][col], row, col )) ;
         }
 
@@ -453,15 +453,15 @@ function tileClicked(e)
         return ;
     }
 
-    let result = !tiles[e.innerText].selected ;
+    let result = !tiles[e.innerText-1].selected ;
 
-    if (!tiles[e.innerText].enabled) return ;
+    if (!tiles[e.innerText-1].enabled) return ;
 
     tiles.forEach(tile => {
         tile.selected = false ;
     });
 
-    tiles[e.innerText].selected = result ;
+    tiles[e.innerText-1].selected = result ;
 
     updateTiles() ;
 }
@@ -803,14 +803,14 @@ function undoStep()
     {
         clearTileSelection() ;
         userAnswers[step.row][step.column] = blank ;
-        tiles[step.digit].enabled = true ;
-        tiles[step.digit].selected = true ;
+        tiles[step.digit-1].enabled = true ;
+        tiles[step.digit-1].selected = true ;
     }
     else if ( step.action == REMOVE)
     {
         userAnswers[step.row][step.column] = step.digit ;
-        tiles[step.digit].enabled = false ;
-        tiles[step.digit].selected = false ;
+        tiles[step.digit-1].enabled = false ;
+        tiles[step.digit-1].selected = false ;
     }
 
     updateBoard() ;
@@ -855,7 +855,7 @@ function revealOneBox()
     let revealCol = Math.floor(revealLocation%dimensions) ;
     let revealNumber = solution[revealRow][revealCol] ;
 
-    let tile = tiles[revealNumber] ;
+    let tile = tiles[revealNumber-1] ;
 
     // if revealRow/revealCol is not blank, then move tile back.
     if ( userAnswers[revealRow][revealCol] != blank)
@@ -865,13 +865,13 @@ function revealOneBox()
     }
 
     // if tile is not available, move number back to tiles.
-    if ( !tiles[revealNumber].enabled )
+    if ( !tiles[revealNumber-1].enabled )
     {
         moveNumberBack(revealNumber) ;
     }
     else
     {
-        tiles[revealNumber].selected = true ;
+        tiles[revealNumber-1].selected = true ;
     }
 
     boardClicked(revealRow, revealCol) ;
@@ -913,7 +913,7 @@ function moveNumberBack(number)
 
 function moveNumberToBoard(number)
 {
-    if ( !tiles[number].enabled )
+    if ( !tiles[number-1].enabled )
     {
         alert(`${number} tile is already used.`) ;
         console.log(`${number} tile is already used.`) ;
@@ -941,7 +941,7 @@ function moveNumberToBoard(number)
 
     if ( numRow >= 0 && numCol >= 0 )
     {
-        tiles[number].selected = true ;
+        tiles[number-1].selected = true ;
         boardClicked(numRow, numCol) ;
     }
     else
