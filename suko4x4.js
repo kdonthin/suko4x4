@@ -455,13 +455,18 @@ function tileClicked(e)
 
     let result = !tiles[e.innerText-1].selected ;
 
-    if (!tiles[e.innerText-1].enabled) return ;
+    if (tiles[e.innerText-1].enabled)
+    {
+        tiles.forEach(tile => {
+            tile.selected = false ;
+        });
 
-    tiles.forEach(tile => {
-        tile.selected = false ;
-    });
-
-    tiles[e.innerText-1].selected = result ;
+        tiles[e.innerText-1].selected = result ;
+    }
+    else // tile is already used, bring it back.
+    {
+        moveNumberBack(e.innerText) ;
+    }
 
     updateTiles() ;
 }
