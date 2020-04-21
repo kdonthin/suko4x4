@@ -443,7 +443,7 @@ function getSelectedTileIndex()
         }
     }
 
-    return blank ;
+    return -1 ; // nothing selected.
 }
 
 function tileClicked(e)
@@ -627,19 +627,19 @@ function checkAnswer(autoCheck)
             clearInterval(timerId) ;
 
             setTimeout(function() {
-                    alert(`Congratulations, you completed puzzle in [${secondsToTimeString(timePastSec)}] !!!!`) ;
+                    alert(`Congratulations, you completed puzzle in [${secondsToTimeString(timePastSec)}] with ${revealedNumbers.length} tiles revealed.!!!!`) ;
                  }, 500) ;
             
-            logToPage(`Checking - Congratulations, you completed puzzle in [${secondsToTimeString(timePastSec)}]`) ;
+            logToPage(`Checking - Congratulations, you completed puzzle in [${secondsToTimeString(timePastSec)}] with ${revealedNumbers.length} tiles revealed.`) ;
             isPuzzleCorrect = true ;
         }
         else if (markTotalFields())
         {
             setTimeout(function() {
-                alert(`Congratulations, You found alternative Solution in [${secondsToTimeString(timePastSec)}] !!!!`) ;
+                alert(`Congratulations, You found alternative Solution in [${secondsToTimeString(timePastSec)}] with ${revealedNumbers.length} tiles revealed. !!!!`) ;
              }, 500) ;
         
-            logToPage(`Checking - Congratulations. You have found alternative solution in [${secondsToTimeString(timePastSec)}] !!!!.`) ;
+            logToPage(`Checking - Congratulations. You have found alternative solution in [${secondsToTimeString(timePastSec)}] with ${revealedNumbers.length} tiles revealed. !!!!.`) ;
             isCorrect = true ;
         }
         else if (!autoCheck) // log & alert only if not auto check
